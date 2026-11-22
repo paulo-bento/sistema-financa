@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import "@fontsource/cantarell/latin-400.css";
+@import "@fontsource/cantarell/latin-700.css";
+
+@theme inline {
+  --font-sans: "Cantarell", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --radius-sm: var(--control-radius);
+  --radius-md: var(--control-radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+}
+
+:root {
+  color-scheme: light dark;
+  --background: #f6f5f4;
+  --foreground: #2e3436;
+  --card: #ffffff;
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --accent: #3584e4;
+  --accent-foreground: #101820;
+  --primary: var(--accent);
+  --primary-foreground: var(--accent-foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --muted: #efedeb;
+  --muted-foreground: #565c5e;
+  --destructive: #e01b24;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: var(--border);
+  --ring: var(--accent);
+  --success: #26a269;
+  --warning: #e5a50a;
+  --radius: 12px;
+  --control-radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #242424;
+    --foreground: #ffffff;
+    --card: #303030;
+    --accent: #78aeed;
+    --muted: #3b3b3b;
+    --muted-foreground: #c9c9c9;
+    --destructive: #ff7b63;
+    --destructive-foreground: #25100c;
+    --border: rgba(255, 255, 255, 0.1);
+    --success: #8ff0a4;
+    --warning: #f8e45c;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground;
+  }
+}
+
+[data-sonner-toast][data-styled="true"].toast-financas {
+  border-radius: var(--radius);
+  box-shadow: none;
+  padding: 12px 18px;
+}
+
+.toast-financas-sucesso [data-icon] {
+  color: var(--success);
+}
+
+.toast-financas-erro [data-icon] {
+  color: var(--destructive);
+}
