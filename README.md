@@ -18,6 +18,44 @@ Finanças pessoais é um aplicativo web para acompanhar receitas, despesas e sal
 3. Nas ferramentas do navegador, ative o **modo responsivo** pelo ícone de celular ou tablet.
 4. No seletor de dispositivos acima da página, escolha um **modelo de telefone predefinido**. No painel, observe os filtros empilhados e a lista de transações ajustada à largura da tela.
 
+## Como rodar localmente
+
+Você precisa de **Node.js 20.19 ou superior**, npm e um cluster no **MongoDB Atlas**. No Atlas, configure um usuário de banco com permissão de leitura e escrita e adicione o IP da sua máquina à lista de IPs autorizados.
+
+### 1. Clone o projeto e instale as dependências
+
+```bash
+git clone https://github.com/paulo-bento/sistema-financa.git
+cd sistema-financa
+npm ci
+```
+
+### 2. Configure o banco e a autenticação
+
+Crie o arquivo `.env.local` na raiz do projeto, ao lado de `package.json`, e preencha as duas variáveis abaixo.
+
+```dotenv
+MONGODB_URI=
+NEXTAUTH_SECRET=
+```
+
+- **`MONGODB_URI`** recebe a URI do driver fornecida pelo Atlas. Inclua as credenciais do usuário de banco e use `sistema_financa` no caminho da URI, antes do `?` das opções.
+- **`NEXTAUTH_SECRET`** recebe um segredo aleatório usado pelo Auth.js. Execute o comando abaixo e copie o resultado para o arquivo.
+
+```bash
+node -e "console.log(require('node:crypto').randomBytes(32).toString('base64'))"
+```
+
+Mantenha o arquivo `.env.local` fora do Git.
+
+### 3. Inicie o servidor
+
+```bash
+npm run dev
+```
+
+Abra `http://localhost:3000` no navegador. Para validar o projeto, execute `npm run lint` e `npm run build`.
+
 ## Tecnologias
 
 - **Next.js, React e TypeScript** para a interface, as rotas e as ações no servidor.
